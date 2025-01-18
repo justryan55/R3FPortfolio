@@ -26,3 +26,55 @@ body,
   height: 100%;
   border: none;
 }
+
+.loading-text-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "Bangers", sans-serif;
+  font-size: 2rem;
+}
+
+.loading-text {
+  margin-right: 5px;
+  color: black;
+}
+
+.loading-dots {
+  display: inline-block;
+}
+
+.dot {
+  display: inline-block;
+  color: black;
+  font-size: 2rem;
+  animation: bounce 1s infinite alternate;
+}
+
+.dot:nth-child(1) {
+  animation-delay: 0s;
+}
+
+.dot:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.dot:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+@keyframes bounce {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}

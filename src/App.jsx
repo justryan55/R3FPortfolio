@@ -1,10 +1,11 @@
 import "./style.css";
-import { useState, useEffect } from "react";
+import { useState, useEffect, Suspense } from "react";
 
 import ReactDOM from "react-dom/client";
 import { Canvas } from "@react-three/fiber";
 import Experience from "./Experience.jsx";
 import Flat from "./Flat.jsx";
+import Fallback from "./Fallback";
 
 const App = () => {
   const [isMobile, setIsMobile] = useState(null);
@@ -24,17 +25,19 @@ const App = () => {
   }, []);
 
   return !isFlat && !isMobile ? (
-    <Canvas
-      className="canvas"
-      camera={{
-        fov: 45,
-        near: 0.1,
-        far: 2000,
-        position: [-3, 1.5, 4],
-      }}
-    >
-      <Experience isFlat={isFlat} setIsFlat={setIsFlat} />
-    </Canvas>
+    <Suspense fallback={<Fallback />}>
+      <Canvas
+        className="canvas"
+        camera={{
+          fov: 45,
+          near: 0.1,
+          far: 2000,
+          position: [-3, 1.5, 4],
+        }}
+      >
+        <Experience isFlat={isFlat} setIsFlat={setIsFlat} />
+      </Canvas>
+    </Suspense>
   ) : (
     <>
       <Flat />
